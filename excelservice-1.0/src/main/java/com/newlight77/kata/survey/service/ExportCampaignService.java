@@ -26,6 +26,12 @@ public class ExportCampaignService {
     this.mailService = mailService;
   }
 
+  public void exportCampaign(String campaignId) {
+    final Campaign campaign = getCampaign(campaignId);
+    final Survey survey = getSurvey(campaign.getSurveyId());
+    sendResults(campaign, survey);
+  }
+
   public void createSurvey(final Survey survey) {
     campaignWebService.createSurvey(survey);
   }

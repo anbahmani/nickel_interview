@@ -46,11 +46,7 @@ public class SurveyController {
 
     @PostMapping("/campaign/export")
     public void exportCampaign(@RequestParam final String campaignId) {
-
-        final Campaign campaign = exportCampaignService.getCampaign(campaignId);
-        final Survey survey = exportCampaignService.getSurvey(campaign.getSurveyId());
-        exportCampaignService.sendResults(campaign, survey);
-        
+        this.exportCampaignService.exportCampaign(campaignId);
     }
 }
 
