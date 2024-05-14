@@ -1,4 +1,4 @@
-package com.newlight77.kata.survey.controler;
+package com.newlight77.kata.survey.controller;
 
 import com.newlight77.kata.survey.model.Campaign;
 import com.newlight77.kata.survey.model.Survey;
@@ -16,7 +16,7 @@ public class SurveyController {
 
     @RequestMapping(value = "/api/survey/create", method = RequestMethod.POST)
     public void createSurvey(@RequestBody final Survey survey) {
-        exportCampaignService.creerSurvey(survey);
+        exportCampaignService.createSurvey(survey);
     }
 
     @RequestMapping(value = "/api/survey/get", method = RequestMethod.GET)

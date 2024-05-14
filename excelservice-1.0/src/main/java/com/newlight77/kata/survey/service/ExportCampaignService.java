@@ -26,7 +26,7 @@ public class ExportCampaignService {
     this.mailService = mailService;
   }
 
-  public void creerSurvey(final Survey survey) {
+  public void createSurvey(final Survey survey) {
     campaignWebService.createSurvey(survey);
   }
 
@@ -171,7 +171,7 @@ public class ExportCampaignService {
       mailService.send(resultFile);
       resultFile.deleteOnExit();
     } catch(final Exception ex) {
-        throw new RuntimeException("Errorr while trying to send email", ex);
+        throw new RuntimeException("Error while trying to send email", ex);
     } finally {
       try {
         workbook.close();
