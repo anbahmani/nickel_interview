@@ -14,8 +14,8 @@ import java.io.File;
 
 @Service
 public class MailService {
-  private JavaMailSender mailSender;
-  private MailServiceConfig mailServiceConfig;
+  private final JavaMailSender mailSender;
+  private final MailServiceConfig mailServiceConfig;
   private static final Logger logger = LoggerFactory.getLogger(MailService.class);
 
   public MailService(final JavaMailSender mailSender, final MailServiceConfig mailServiceConfig) {
