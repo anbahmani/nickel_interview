@@ -1,9 +1,11 @@
 package com.newlight77.kata.survey.config;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@Data
 public class MailServiceConfig {
 
   @Value("${service.mail.from}")
@@ -12,19 +14,4 @@ public class MailServiceConfig {
   @Value("${service.mail.to}")
   private String[] to;
 
-  public String getFrom() {
-    return from;
-  }
-
-  public void setFrom(String from) {
-    this.from = from;
-  }
-
-  public String[] getTo() {
-    return to;
-  }
-
-  public void setTo(String[] to) {
-    this.to = to;
-  }  
 }
