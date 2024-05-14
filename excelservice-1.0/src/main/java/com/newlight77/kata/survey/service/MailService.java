@@ -1,6 +1,7 @@
 package com.newlight77.kata.survey.service;
 
 import com.newlight77.kata.survey.config.MailServiceConfig;
+import jakarta.mail.internet.MimeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.FileSystemResource;
@@ -24,16 +25,7 @@ public class MailService {
   }
 
   public void send(File attachment) {
-    MimeMessagePreparator messagePreparator = mimeMessage -> {
-      MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true);
-      messageHelper.setFrom(mailServiceConfig.getFrom());
-      messageHelper.setTo(mailServiceConfig.getTo());
-      messageHelper.setSubject("Campaign Results");
-      messageHelper.setText("Hi,\n\nYou will find in the attached file the campaign results.");
-
-      FileSystemResource file = new FileSystemResource(attachment);
-      messageHelper.addAttachment(file.getFilename(), file);
-    };
+    MimeMessagePreparator messagePreparator = mimeMessage -> prepareMessage(mimeMessage, attachment);
     try {
       mailSender.send(messagePreparator);
       logger.info("Email sent successfully");
@@ -42,4 +34,14 @@ public class MailService {
     }
   }
 
+  private void prepareMessage(MimeMessage mimeMessage, File attachment) throws Exception {
+    MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true);
+    messageHelper.setFrom(mailServiceConfig.getFrom());
+    messageHelper.setTo(mailServiceConfig.getTo());
+    messageHelper.setSubject("Campaign Results");
+    messageHelper.setText("Hi,\n\nYou will find in the attached file the campaign results.");
+
+    FileSystemResource file = new FileSystemResource(attachment);
+    messageHelper.addAttachment(file.getFilename(), file);
+  }
 }
